@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:hamza/Utils/AppColors.dart';
+import 'package:hamza/Utils/app_routes.dart';
 import 'package:hamza/Utils/static_assets.dart';
 
 import '../Utils/AppFontStyles.dart';
@@ -32,10 +34,15 @@ class _HomeState extends State<Home> {
         actions: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: SvgPicture.asset(
-              StaticAssets.notificationIcon,
-              width: 24,
-              height: 24,
+            child: GestureDetector(
+              onTap: (){
+                Get.toNamed(AppRoutes.uploadImageScreen);
+              },
+              child: SvgPicture.asset(
+                StaticAssets.notificationIcon,
+                width: 24,
+                height: 24,
+              ),
             ),
           )
         ],

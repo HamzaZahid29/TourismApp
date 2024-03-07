@@ -48,10 +48,12 @@ class AuthFieldGap extends StatelessWidget {
 }
 
 class SubmitBtn extends StatelessWidget {
+  bool isLoading;
   String title;
   Function function;
 
-  SubmitBtn(this.title, this.function);
+
+  SubmitBtn(this.isLoading, this.title, this.function);
 
   @override
   Widget build(BuildContext context) {
@@ -60,8 +62,8 @@ class SubmitBtn extends StatelessWidget {
         function();
       },
       style: ElevatedButton.styleFrom(
-        primary: AppColors.primaryColor, // Background color
-        onPrimary: Colors.white, // Text color
+        backgroundColor: AppColors.primaryColor, // Background color
+        foregroundColor: Colors.white, // Text color
         shape: RoundedRectangleBorder(
           borderRadius:
               BorderRadius.circular(8), // Adjust border radius as needed
@@ -70,7 +72,7 @@ class SubmitBtn extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20),
-        child: Text(title),
+        child:isLoading ?CircularProgressIndicator(color: Colors.white,): Text(title),
       ),
     );
   }

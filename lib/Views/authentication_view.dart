@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:hamza/Utils/app_routes.dart';
 
 import '../Controllers/authentication_controller.dart';
@@ -27,10 +28,12 @@ class AuthenticationScreen extends StatelessWidget {
                   AuthFieldGap(),
                   AuthTextField('Enter your password', TextInputType.visiblePassword, true,passwordController),
                   AuthFieldGap(),
-                  SubmitBtn('Submit', (){
-                    authController.createUserWithEmailAndPassword(emailController.text,passwordController.text);
-                      // Get.toNamed(AppRoutes.homeScreen);
-                  }),
+                  Obx(
+                      ()=>  SubmitBtn( authController.isLoading.value,'Submit', (){
+                      authController.createUserWithEmailAndPassword(emailController.text,passwordController.text);
+                        // Get.toNamed(AppRoutes.homeScreen);
+                    }),
+                  ),
                 ],
               ),
             ),
